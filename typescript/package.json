@@ -1,0 +1,21 @@
+{
+  "name": "experiment-typescript",
+  "version": "1.0.0",
+  "description": "Daily commit automation script in TypeScript",
+  "main": "dist/daily_commit.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/daily_commit.js",
+    "dev": "ts-node src/daily_commit.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "ts-node": "^10.9.0",
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {}
+}
+

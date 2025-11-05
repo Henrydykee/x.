@@ -1,0 +1,64 @@
+name: Daily Commit
+
+on:
+  schedule:
+    # Run daily at 00:00 UTC
+    - cron: '0 0 * * *'
+  workflow_dispatch: # Allow manual trigger
+
+jobs:
+  dart-commit:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
+
+      - name: Setup Dart
+        uses: dart-lang/setup-dart@v1
+        with:
+          dart-version: '3.0.0'
+
+      - name: Install dependencies
+        run: |
+          cd dart
+          dart pub get
+
+      - name: Run Dart daily commit
+        run: |
+          dart dart/bin/daily_commit.dart
+
+  typescript-commit:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: |
+          cd typescript
+          npm install
+
+      - name: Build TypeScript
+        run: |
+          cd typescript
+          npm run build
+
+      - name: Run TypeScript daily commit
+        run: |
+          node typescript/dist/daily_commit.js
+

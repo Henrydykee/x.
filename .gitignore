@@ -1,0 +1,21 @@
+# Dart
+dart/.dart_tool/
+dart/.packages
+dart/pubspec.lock
+
+# TypeScript
+typescript/node_modules/
+typescript/dist/
+typescript/*.log
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
