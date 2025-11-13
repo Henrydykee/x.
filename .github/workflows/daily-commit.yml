@@ -32,33 +32,3 @@ jobs:
         run: |
           dart dart/bin/daily_commit.dart
 
-  typescript-commit:
-    runs-on: ubuntu-latest
-    permissions:
-      contents: write
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          fetch-depth: 0
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-
-      - name: Install dependencies
-        run: |
-          cd typescript
-          npm install
-
-      - name: Build TypeScript
-        run: |
-          cd typescript
-          npm run build
-
-      - name: Run TypeScript daily commit
-        run: |
-          node typescript/dist/daily_commit.js
-
